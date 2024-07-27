@@ -26,7 +26,7 @@ const stockSchema = new mongoose.Schema({
     createdAt: Date,
 });
 
-const Stock = mongoose.model('Stock', stockSchema, 'stock'); // Убедитесь, что имя коллекции правильно
+const Stock = mongoose.model('Stock', stockSchema, 'stock');
 
 app.get('/api/marks', async (req, res) => {
   try {
@@ -45,8 +45,8 @@ app.get('/api/marks', async (req, res) => {
 
 app.get('/api/models', async (req, res) => {
   try {
-    const { mark } = req.query; // Получение параметра mark из запроса
-    const filter = mark ? { mark } : {}; // Фильтр по марке, если он указан
+    const { mark } = req.query;
+    const filter = mark ? { mark } : {};
     const models = await Stock.distinct('model', filter);
     console.log('Fetched car models:', models);
     res.json(models);
